@@ -18,10 +18,13 @@ class LoginPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
-            if (state.error != null) {
+            if (state is LoginError) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error!)),
+                SnackBar(content: Text(state.message)),
               );
+            }
+            if(state is LoginSuccess){
+              print('login success');
             }
           },
           builder: (context, state) {
@@ -57,7 +60,7 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 /// 🔄 Loading
-                if (state.isLoading)
+                if (state is LoginLoading)
                   const CircularProgressIndicator()
                 else
                   ElevatedButton(

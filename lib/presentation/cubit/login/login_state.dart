@@ -1,20 +1,9 @@
-class LoginState {
-  final bool isLoading;
-  final String? error;
+abstract class LoginState {}
+class LoginInitial extends LoginState {}
+class LoginLoading extends LoginState {}
+class LoginSuccess extends LoginState {}
+class LoginError extends LoginState {
+  final String message;
 
-  LoginState({
-    this.isLoading = false,
-    this.error,
-  });
-
-  LoginState copyWith({
-    bool? isLoading,
-    String? error,
-  }){
-    return LoginState(
-      isLoading: isLoading ?? this.isLoading,
-      error: error,
-    );
-  }
-
+  LoginError(this.message);
 }

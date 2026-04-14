@@ -7,20 +7,17 @@ class LoginCubit extends Cubit<LoginState>{
   final LoginUsecase loginUsecase;
   final AuthCubit authCubit;
 
-  LoginCubit(this.loginUsecase, this.authCubit) : super (LoginState());
+  LoginCubit(this.loginUsecase, this.authCubit) : super (LoginInitial());
 
   Future<void> login(String email, String password)async{
-    emit(state.copyWith(isLoading: true,error: null));
+    emit(LoginLoading());
     try{
       final token = await loginUsecase(email,password);
       await authCubit.setAuthenticated(token);
-      emit(state.copyWith(isLoading: false));
+      emit(LoginSuccess());
     }catch (e) {
-      emit(state.copyWith(
-        isLoading: false,
-        error: e.toString(), 
-  ));
-}
+      emit(LoginError(e.toString()));
+    }
   }
 
 }
