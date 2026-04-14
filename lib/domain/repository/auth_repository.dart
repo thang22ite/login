@@ -1,3 +1,5 @@
+import 'package:vd_login/domain/entities/auth_user.dart';
+
 abstract class AuthRepository {
-  Future<String> login(String email, String password);
+  Future<AuthUser> login(String email, String password);
 }

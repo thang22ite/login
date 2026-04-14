@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vd_login/common/blocs/auth/auth_state.dart';
 import 'package:vd_login/core/storage/local_storage.dart';
-import 'package:vd_login/common/auth/auth_state.dart';
+
 
 class AuthCubit extends Cubit<AuthState>{
   final LocalStorage storage;

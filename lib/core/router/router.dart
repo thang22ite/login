@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vd_login/common/auth/auth_cubit.dart';
-import 'package:vd_login/common/auth/auth_state.dart';
+import 'package:vd_login/common/blocs/auth/auth_cubit.dart';
+import 'package:vd_login/common/blocs/auth/auth_state.dart';
 import 'package:vd_login/core/di/injection.dart';
 import 'package:vd_login/core/router/app_routes.dart';
 import 'package:vd_login/core/router/router_refresh.dart';
