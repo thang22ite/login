@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vd_login/domain/usecases/login_usecase.dart';
-import 'package:vd_login/presentation/cubit/auth/auth_cubit.dart';
+import 'package:vd_login/common/auth/auth_cubit.dart';
 import 'package:vd_login/presentation/cubit/login/login_state.dart';
 
 class LoginCubit extends Cubit<LoginState>{
@@ -13,8 +13,8 @@ class LoginCubit extends Cubit<LoginState>{
     emit(LoginLoading());
     try{
       final token = await loginUsecase(email,password);
+      emit(LoginSuccess(token));
       await authCubit.setAuthenticated(token);
-      emit(LoginSuccess());
     }catch (e) {
       emit(LoginError(e.toString()));
     }
