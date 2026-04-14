@@ -7,14 +7,19 @@ class AuthCubit extends Cubit<AuthState>{
 
   AuthCubit(this.storage) : super(AppInitialState());
 
-  Future<void> checkAuth()async{
+  Future<void> checkAuth() async {
     emit(AuthLoading());
-    final token = await storage.getToken();
 
-    if(token != null){
-      emit(Authenticated());
-    }else{
-      emit(UnAuthenticated());
+    try {
+      final token = await storage.getToken();
+
+      if (token != null) {
+        emit(Authenticated());
+      } else {
+        emit(UnAuthenticated());
+      }
+    } catch (e) {
+      emit(UnAuthenticated()); // ⭐ QUAN TRỌNG
     }
   }
 

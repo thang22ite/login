@@ -17,7 +17,6 @@ class AuthApi {
 
       return res.data['access_token'];
     } on DioException catch (e) {
-      print(e.response?.data);
       throw Exception(e.response?.data['error_description'] ?? 'Login failed');
     }
   }
