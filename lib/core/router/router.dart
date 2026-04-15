@@ -6,9 +6,9 @@ import 'package:vd_login/common/blocs/auth/auth_state.dart';
 import 'package:vd_login/core/di/injection.dart';
 import 'package:vd_login/core/router/app_routes.dart';
 import 'package:vd_login/core/router/router_refresh.dart';
-import 'package:vd_login/presentation/cubit/login/login_cubit.dart';
-import 'package:vd_login/presentation/pages/home_page.dart';
-import 'package:vd_login/presentation/pages/login_page.dart';
+import 'package:vd_login/presentation/preen/login/bloc/login_cubit.dart';
+import 'package:vd_login/presentation/preen/home/pages/home_page.dart';
+import 'package:vd_login/presentation/preen/login/pages/login_page.dart';
 
 class AppRouter {
   final AuthCubit authCubit;

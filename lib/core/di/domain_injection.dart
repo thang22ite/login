@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:vd_login/domain/repository/auth_repository.dart';
 import 'package:vd_login/domain/usecases/get_token_usecase.dart';
-import 'package:vd_login/domain/usecases/login_usecase.dart';
+import 'package:vd_login/domain/usecases/login/login_usecase.dart';
 import 'package:vd_login/domain/usecases/logout_usecase.dart';
 import 'package:vd_login/domain/usecases/save_token_usecase.dart';
 
