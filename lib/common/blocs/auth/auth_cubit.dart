@@ -1,18 +1,21 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vd_login/common/blocs/auth/auth_state.dart';
-import 'package:vd_login/core/storage/local_storage.dart';
+import 'package:vd_login/domain/usecases/get_token_usecase.dart';
+import 'package:vd_login/domain/usecases/logout_usecase.dart';
 
 
 class AuthCubit extends Cubit<AuthState>{
-  final LocalStorage storage;
+  final GetTokenUsecase getToken;
+  final LogoutUsecase logoutUsecase;
 
-  AuthCubit(this.storage) : super(AppInitialState());
+
+  AuthCubit(this.getToken, this.logoutUsecase) : super(AppInitialState());
 
   Future<void> checkAuth() async {
     emit(AuthLoading());
 
     try {
-      final token = await storage.getToken();
+      final token = await getToken();
 
       if (token != null) {
         emit(Authenticated());
@@ -20,21 +23,12 @@ class AuthCubit extends Cubit<AuthState>{
         emit(UnAuthenticated());
       }
     } catch (e) {
-      emit(UnAuthenticated()); // ⭐ QUAN TRỌNG
-    }
-  }
-
-  Future<void> setAuthenticated(String token)async{
-    try {
-      await storage.saveToken(token);
-      emit(Authenticated());
-    } catch (e) {
-      emit(AuthError(e.toString()));
+      emit(UnAuthenticated()); 
     }
   }
 
   Future<void> logout() async{
-    await storage.clearToken();
+    await logoutUsecase();
     emit(UnAuthenticated());
   }
 }
